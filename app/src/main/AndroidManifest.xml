@@ -19,6 +19,10 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
+        <activity android:name=".RecuperarSenhaActivity" />
+        <activity android:name=".CadastrarActivity" />
+        <activity android:name=".CadastrarPadraoActivity" />
+        <activity android:name=".CadastrarPromotorActivity"></activity>
     </application>
 
 </manifest>
