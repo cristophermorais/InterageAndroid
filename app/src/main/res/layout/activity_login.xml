@@ -34,13 +34,14 @@
             android:typeface="sans" />
 
         <EditText
-            android:id="@+id/usuarioLogin"
+            android:id="@+id/usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:ems="10"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
+            android:text="login@interage.com"
             android:textAlignment="center" />
 
         <EditText
@@ -54,6 +55,7 @@
             android:ems="10"
             android:hint="Senha"
             android:inputType="textPassword"
+            android:text="Abcd1234"
             android:textAlignment="center" />
 
         <TextView

@@ -36,7 +36,7 @@
             />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/nome_padrao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -49,7 +49,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/cpf_padrao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -58,11 +58,11 @@
             android:layout_marginTop="15dp"
             android:ems="10"
             android:hint="CPF"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/email_padrao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -75,7 +75,7 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/senha_padrao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -87,8 +87,21 @@
             android:textAlignment="center"
             android:inputType="textPassword" />
 
+        <EditText
+            android:id="@+id/conf_senha_padrao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Confirmação de Senha"
+            android:textAlignment="center"
+            android:inputType="textPassword" />
+
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_cadastrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
