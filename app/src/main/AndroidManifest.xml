@@ -30,6 +30,7 @@
             android:name="com.interage.app.TesteActivity"
             android:label="@string/title_activity_teste"
             android:theme="@style/AppTheme" />
+        <activity android:name=".ComplementoActivity"></activity>
     </application>
 
 </manifest>

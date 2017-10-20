@@ -12,29 +12,32 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="20dp">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
                 android:layout_alignBottom="@+id/textViewBairroCidade"
                 app:srcCompat="@drawable/ic_location_on_black_36dp" />
 
             <TextView
                 android:id="@+id/textViewRua"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/imageView"
                 android:layout_toRightOf="@+id/imageView"
+                android:layout_marginLeft="10dp"
                 android:text="TextView"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textViewBairroCidade"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/textViewRua"
                 android:layout_alignStart="@+id/textViewRua"
@@ -45,8 +48,9 @@
     </android.support.v7.widget.CardView>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTextNumero"
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:hint="Número"
         android:ems="10"

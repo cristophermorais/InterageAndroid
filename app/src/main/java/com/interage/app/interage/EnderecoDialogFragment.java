@@ -27,8 +27,8 @@ public class EnderecoDialogFragment extends DialogFragment {
     }
 
     private EnderecoDialogListener mListener;
-    private EditText cep;
     private Endereco endereco;
+    private View view;
 
     @Override
     public void onAttach(Activity activity) {
@@ -53,7 +53,7 @@ public class EnderecoDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         // Create the AlertDialog object and return it
-        View view = inflater.inflate(R.layout.dialog_endereco, null);
+        view = inflater.inflate(R.layout.dialog_endereco, null);
         ((TextView) view.findViewById(R.id.textViewRua)).setText(endereco.getEndereco());
         ((TextView) view.findViewById(R.id.textViewBairroCidade)).setText(endereco.getBairro() + ", " + endereco.getCidade());
 
@@ -74,6 +74,11 @@ public class EnderecoDialogFragment extends DialogFragment {
 
 
         return builder.create();
+    }
+
+    public int getNumero() {
+        String aux = ((EditText) view.findViewById(R.id.editTextNumero)).getText().toString();
+        return Integer.parseInt(aux);
     }
 
     public Endereco getEndereco() {

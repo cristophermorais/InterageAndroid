@@ -1,5 +1,6 @@
 package com.interage.app.interage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -104,12 +105,36 @@ public class CepActivity extends AppCompatActivity implements EnderecoDialogFrag
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         // User touched the dialog's positive button
-
+        int numero = ((EnderecoDialogFragment) dialog).getNumero();
+        endereco.setNumero(numero);
+        startComplementoActivity();
     }
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
         // User touched the dialog's negative button
         Toast.makeText(getApplicationContext(), "Cancel!", Toast.LENGTH_LONG).show();
+    }
+
+    public void startComplementoActivity() {
+        Intent intent = new Intent(this, ComplementoActivity.class);
+        intent.putExtra("endereco", endereco);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        endereco = (Endereco) data.getSerializableExtra("endereco");
+        Intent intent = new Intent();
+        intent.putExtra("endereco", endereco);
+        setResult(0, intent);
+        super.finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        setResult(1, intent);
+        super.onBackPressed();
     }
 }

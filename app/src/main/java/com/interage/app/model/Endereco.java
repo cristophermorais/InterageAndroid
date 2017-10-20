@@ -13,6 +13,7 @@ public class Endereco implements Serializable {
     private String cidade;
     private String uf;
     private String CEP;
+    private String complemento;
 
     public String getEndereco() {
         return endereco;
@@ -60,5 +61,13 @@ public class Endereco implements Serializable {
 
     public void setCEP(String CEP) {
         this.CEP = CEP;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 }
