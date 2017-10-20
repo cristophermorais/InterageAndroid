@@ -17,7 +17,6 @@ public class CadastrarPadraoActivity extends AppCompatActivity {
     EditText cpf;
     EditText email;
     EditText senha;
-    EditText conf_senha;
     MaskEditTextChangedListener maskCPF;
 
 
@@ -26,12 +25,11 @@ public class CadastrarPadraoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_padrao);
 
-        btCadastrar = (Button) findViewById(R.id.button_cadastrar);
+        btCadastrar = (Button) findViewById(R.id.button_cadastrar_padrao);
         nome = (EditText) findViewById(R.id.nome_padrao);
         cpf = (EditText) findViewById(R.id.cpf_padrao);
         email = (EditText) findViewById(R.id.email_padrao);
         senha = (EditText) findViewById(R.id.senha_padrao);
-        conf_senha = (EditText) findViewById(R.id.conf_senha_padrao);
 
 
         btCadastrar.setOnClickListener(new View.OnClickListener() {
@@ -60,9 +58,6 @@ public class CadastrarPadraoActivity extends AppCompatActivity {
             isValid = false;
 
         if (!Utils.validaSenha(senha)) {
-            isValid = false;
-        } else if (!senha.getText().toString().equals(conf_senha.getText().toString())) {
-            conf_senha.setError("Confirmação de senha diferente da senha");
             isValid = false;
         }
 

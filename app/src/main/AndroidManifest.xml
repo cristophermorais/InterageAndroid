@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.interage.app.interage">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +24,12 @@
         <activity android:name=".RecuperarSenhaActivity" />
         <activity android:name=".CadastrarActivity" />
         <activity android:name=".CadastrarPadraoActivity" />
-        <activity android:name=".CadastrarPromotorActivity"></activity>
+        <activity android:name=".CadastrarPromotorActivity" />
+        <activity android:name=".CepActivity" />
+        <activity
+            android:name="com.interage.app.TesteActivity"
+            android:label="@string/title_activity_teste"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
