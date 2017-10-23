@@ -82,10 +82,13 @@ public class CadastrarPromotorActivity extends AppCompatActivity {
             if (endereco.getComplemento() != null && !endereco.getComplemento().trim().isEmpty()) {
                 textViewCompl.setVisibility(View.VISIBLE);
                 textViewCompl.setText(endereco.getComplemento().isEmpty() ? "" : endereco.getComplemento());
+            } else {
+                textViewCompl.setVisibility(View.GONE);
             }
 
             textViewEnd.setText(endereco.getEndereco() + ", " + endereco.getNumero());
-            textViewCidUf.setText(endereco.getCidade() + " - " + endereco.getUf());
+            textViewCidUf.setText(endereco.getBairro() + ", " + endereco.getCidade() + " - " + endereco.getUf());
+
         }
     }
 }

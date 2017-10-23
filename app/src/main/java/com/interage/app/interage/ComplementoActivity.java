@@ -44,6 +44,8 @@ public class ComplementoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!checkBox.isChecked()) {
                     endereco.setComplemento(editTextCompl.getText().toString());
+                } else {
+                    endereco.setComplemento(null);
                 }
                 backToCep();
             }

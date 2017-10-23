@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:fontFamily="sans-serif"
-            android:text="Entre com seu email e para que você possa resetar sua senha."
+            android:text="Entre com email para recuperar a senha."
             android:textSize="18sp"
             android:typeface="sans" />
         <EditText
@@ -36,7 +36,7 @@
         <Button
             android:id="@+id/sendEmail"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:text="Enviar" />
 

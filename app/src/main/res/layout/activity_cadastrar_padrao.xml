@@ -54,6 +54,7 @@
                     android:ems="10"
                     android:hint="Nome Completo"
                     android:inputType="textPersonName"
+                    android:text="Alexandre Vieira"
                     android:textAlignment="center" />
 
                 <EditText
@@ -67,6 +68,7 @@
                     android:ems="10"
                     android:hint="CPF"
                     android:inputType="number"
+                    android:text="085.203.896-86"
                     android:textAlignment="center" />
 
                 <EditText
@@ -80,6 +82,7 @@
                     android:ems="10"
                     android:hint="E-mail"
                     android:inputType="textEmailAddress"
+                    android:text="alexandre@interage.com"
                     android:textAlignment="center" />
 
                 <EditText
@@ -93,6 +96,7 @@
                     android:ems="10"
                     android:hint="Senha"
                     android:inputType="textPassword"
+                    android:text="Teste1233"
                     android:textAlignment="center" />
 
                 <Button

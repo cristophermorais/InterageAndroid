@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.interage.app.model.UsuarioPadrao;
+import com.interage.app.retrofit.UsuarioPadraoClient;
 import com.interage.app.utils.MaskEditTextChangedListener;
+import com.interage.app.utils.MaskUtils;
 import com.interage.app.utils.Utils;
 
 public class CadastrarPadraoActivity extends AppCompatActivity {
@@ -18,6 +20,7 @@ public class CadastrarPadraoActivity extends AppCompatActivity {
     EditText email;
     EditText senha;
     MaskEditTextChangedListener maskCPF;
+    int count = 0;
 
 
     @Override
@@ -67,6 +70,15 @@ public class CadastrarPadraoActivity extends AppCompatActivity {
     }
 
     private void sendCadastro() {
-        Toast.makeText(getApplicationContext(), "Dados OK!", Toast.LENGTH_LONG).show();
+        UsuarioPadrao usuarioPadrao = new UsuarioPadrao();
+        usuarioPadrao.setCPF(MaskUtils.unmaskCPF(cpf.getText().toString()));
+        usuarioPadrao.setEmail(email.getText().toString().trim());
+        usuarioPadrao.setSenha(senha.getText().toString());
+        usuarioPadrao.setNome(nome.getText().toString());
+        usuarioPadrao.setCodUsuario(count);
+
+        UsuarioPadraoClient client = new UsuarioPadraoClient();
+        client.postUsuario(usuarioPadrao);
+        count++;
     }
 }
