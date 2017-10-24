@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startCadastrar() {
-        Intent nextActivity = new Intent(this, CadastrarActivity.class);
+        Intent nextActivity = new Intent(this, EscolherCadastroActivity.class);
         startActivity(nextActivity);
     }
 }

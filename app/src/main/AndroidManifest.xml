@@ -22,9 +22,8 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
         <activity android:name=".RecuperarSenhaActivity" />
+        <activity android:name=".EscolherCadastroActivity" />
         <activity android:name=".CadastrarActivity" />
-        <activity android:name=".CadastrarPadraoActivity" />
-        <activity android:name=".CadastrarPromotorActivity" />
         <activity android:name=".CepActivity" />
         <activity
             android:name="com.interage.app.TesteActivity"

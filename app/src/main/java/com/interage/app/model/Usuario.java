@@ -8,7 +8,7 @@ public class Usuario {
     private String Nome;
     private String Senha;
     private String Email;
-    private int CodUsuario;
+    private String CPF;
 
     public String getNome() {
         return Nome;
@@ -34,16 +34,16 @@ public class Usuario {
         Email = email;
     }
 
-    public int getCodUsuario() {
-        return CodUsuario;
+    public String getCPF() {
+        return CPF;
     }
 
-    public void setCodUsuario(int codUsuario) {
-        CodUsuario = codUsuario;
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
     }
 
     @Override
     public String toString() {
-        return CodUsuario + " - " + Nome + " - " + Email + " - " + Senha;
+        return Nome + " - " + Email + " - " + Senha + " - " + CPF;
     }
 }

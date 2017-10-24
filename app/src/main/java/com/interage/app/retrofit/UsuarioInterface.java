@@ -1,7 +1,7 @@
 package com.interage.app.retrofit;
 
 
-import com.interage.app.model.UsuarioPadrao;
+import com.interage.app.model.Usuario;
 
 import java.util.List;
 
@@ -14,13 +14,13 @@ import retrofit2.http.POST;
  * Created by alexa on 10/20/2017.
  */
 
-public interface UsuarioPadraoAPI {
+public interface UsuarioInterface {
 
-    @GET("/api/UsuariosPadroes")
-    Call<List<UsuarioPadrao>> listUsuarios();
+    @GET("/api/Usuario")
+    Call<List<Usuario>> listUsuarios();
 
     @POST("/api/UsuariosPadroes")
-    Call<UsuarioPadrao> saveUser(
-            @Body UsuarioPadrao usuarioPadrao
+    Call<Usuario> saveUser(
+            @Body Usuario usuario
     );
 }
