@@ -1,4 +1,4 @@
-package com.interage.app.retrofit;
+package com.interage.app.services;
 
 
 import com.interage.app.model.Usuario;
@@ -14,7 +14,7 @@ import retrofit2.http.POST;
  * Created by alexa on 10/20/2017.
  */
 
-public interface UsuarioInterface {
+interface UsuarioInterface {
 
     @GET("/api/Usuario")
     Call<List<Usuario>> listUsuarios();

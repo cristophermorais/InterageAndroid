@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.interage.app.model.Endereco;
 import com.interage.app.model.Usuario;
-import com.interage.app.retrofit.UsuarioClient;
+import com.interage.app.services.UsuarioService;
 import com.interage.app.utils.MaskEditTextChangedListener;
 import com.interage.app.utils.MaskUtils;
 import com.interage.app.utils.Utils;
@@ -115,8 +115,8 @@ public class CadastrarActivity extends AppCompatActivity {
         usuarioPadrao.setSenha(senha.getText().toString());
         usuarioPadrao.setNome(nome.getText().toString());
 
-        UsuarioClient client = new UsuarioClient();
-        client.cadastrarUsuario(usuarioPadrao, new Callback<Usuario>() {
+        UsuarioService usuarioService = new UsuarioService();
+        usuarioService.cadastrarUsuario(usuarioPadrao, new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()) {

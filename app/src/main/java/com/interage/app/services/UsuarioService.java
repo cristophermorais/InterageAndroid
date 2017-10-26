@@ -1,4 +1,4 @@
-package com.interage.app.retrofit;
+package com.interage.app.services;
 
 import com.interage.app.model.Usuario;
 
@@ -14,10 +14,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by alexa on 10/21/2017.
  */
 
-public class UsuarioClient extends Client {
+public class UsuarioService extends BaseAPI {
     private UsuarioInterface client;
 
-    public UsuarioClient() {
+    public UsuarioService() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
         Retrofit.Builder builder =
