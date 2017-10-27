@@ -17,21 +17,20 @@ import com.interage.app.utils.MaskEditTextChangedListener;
 import com.interage.app.utils.MaskUtils;
 import com.interage.app.utils.Utils;
 
-import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CadastrarActivity extends AppCompatActivity {
 
-    private Endereco endereco;
+    private Endereco endereco = null;
 
     CardView cardViewEndereco;
     TextView textViewTitulo;
     TextView textViewEnd;
     TextView textViewCompl;
     TextView textViewCidUf;
+    TextView textViewSelecionar;
     Button btCadastrar;
     EditText nome;
     EditText cpf;
@@ -53,6 +52,7 @@ public class CadastrarActivity extends AppCompatActivity {
         textViewEnd = (TextView) findViewById(R.id.textViewEnd);
         textViewCompl = (TextView) findViewById(R.id.textViewCompl);
         textViewCidUf = (TextView) findViewById(R.id.textViewCidUf);
+        textViewSelecionar = (TextView) findViewById(R.id.textViewSelecionar);
         nome = (EditText) findViewById(R.id.nome);
         cpf = (EditText) findViewById(R.id.cpf);
         email = (EditText) findViewById(R.id.email);
@@ -90,25 +90,34 @@ public class CadastrarActivity extends AppCompatActivity {
     private void checkCadastro() {
         boolean isValid = true;
 
-        if (!Utils.validaNome(nome))
+        String respostaNome = Utils.validaNome(nome.getText().toString().trim());
+        String respostaSenha = Utils.validaSenha(senha.getText().toString());
+        if (respostaNome != null) {
+            nome.setError(respostaNome);
             isValid = false;
-
-        if (!Utils.validaCPF(cpf))
+        } else if (!Utils.validaCPF(cpf.getText().toString())) {
+            cpf.setError("CPF inválido");
             isValid = false;
-
-        if (!Utils.validaEmail(email))
+        } else if (!Utils.validaEmail(email.getText().toString())) {
+            email.setError("Email inválido");
             isValid = false;
-
-        if (!Utils.validaSenha(senha)) {
+        } else if (respostaSenha != null) {
+            senha.setError(respostaSenha);
             isValid = false;
+        } else if (endereco == null) {
+            isValid = false;
+            textViewSelecionar.setError("Selecione o endreço");
         }
 
         if (isValid) {
             sendCadastro();
         }
+
+
     }
 
     private void sendCadastro() {
+        btCadastrar.setEnabled(false);
         Usuario usuarioPadrao = new Usuario();
         usuarioPadrao.setCPF(MaskUtils.unmaskCPF(cpf.getText().toString()));
         usuarioPadrao.setEmail(email.getText().toString().trim());
@@ -121,22 +130,12 @@ public class CadastrarActivity extends AppCompatActivity {
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()) {
                     Usuario usuario = response.body();
-                    System.out.println(usuario.toString());
+                    ;
                     Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_LONG).show();
-
                 } else {
-                    try {
-                        System.out.println(response.message());
-                        System.out.println(response.errorBody().string());
-                        if (response.code() == 409) {
-
-                            Toast.makeText(getApplicationContext(), "Já existe usuario cadastrado com o CPF/E-mail informado.", Toast.LENGTH_LONG).show();
-
-                        }
-                    } catch (IOException e) {
-                        Toast.makeText(getApplicationContext(), "Erro inesperado.", Toast.LENGTH_LONG).show();
-                    } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Erro inesperado..", Toast.LENGTH_LONG).show();
+                    if (response.code() == 409) {
+                        Toast.makeText(getApplicationContext(), "Já existe usuario cadastrado com o CPF/E-mail informado.", Toast.LENGTH_LONG).show();
+                        btCadastrar.setEnabled(true);
                     }
                 }
             }
@@ -144,6 +143,7 @@ public class CadastrarActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Erro na conexão com o servidor.", Toast.LENGTH_LONG).show();
+                btCadastrar.setEnabled(true);
             }
         });
     }
@@ -157,7 +157,7 @@ public class CadastrarActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == 0) {
             endereco = (Endereco) data.getSerializableExtra("endereco");
-            ((TextView) findViewById(R.id.textViewSelecionar)).setVisibility(View.GONE);
+            textViewSelecionar.setVisibility(View.GONE);
 
 
             textViewEnd.setVisibility(View.VISIBLE);

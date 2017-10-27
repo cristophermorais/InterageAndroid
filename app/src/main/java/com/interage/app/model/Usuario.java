@@ -9,6 +9,7 @@ public class Usuario {
     private String Senha;
     private String Email;
     private String CPF;
+    private Endereco endereco;
 
     public String getNome() {
         return Nome;
@@ -40,6 +41,14 @@ public class Usuario {
 
     public void setCPF(String CPF) {
         this.CPF = CPF;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override

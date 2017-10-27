@@ -1,5 +1,8 @@
 package com.interage.app.services;
 
+import com.interage.app.DTO.EmailDTO;
+import com.interage.app.DTO.LoginDTO;
+import com.interage.app.model.Token;
 import com.interage.app.model.Usuario;
 
 import java.util.List;
@@ -44,6 +47,16 @@ public class UsuarioService extends BaseAPI {
 
     public void cadastrarUsuario(Usuario usuarioPadrao, Callback<Usuario> callback) {
         Call<Usuario> call = client.saveUser(usuarioPadrao);
+        call.enqueue(callback);
+    }
+
+    public void login(LoginDTO loginDTO, Callback<Token> callback) {
+        Call<Token> call = client.login(loginDTO);
+        call.enqueue(callback);
+    }
+
+    public void recupSenha(EmailDTO emailDTO, Callback<Void> callback) {
+        Call<Void> call = client.recuperaSenha(emailDTO);
         call.enqueue(callback);
     }
 }

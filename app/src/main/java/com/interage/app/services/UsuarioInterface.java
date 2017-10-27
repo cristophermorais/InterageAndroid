@@ -1,6 +1,9 @@
 package com.interage.app.services;
 
 
+import com.interage.app.DTO.EmailDTO;
+import com.interage.app.DTO.LoginDTO;
+import com.interage.app.model.Token;
 import com.interage.app.model.Usuario;
 
 import java.util.List;
@@ -22,5 +25,15 @@ interface UsuarioInterface {
     @POST("/api/UsuariosPadroes")
     Call<Usuario> saveUser(
             @Body Usuario usuario
+    );
+
+    @POST("/api/Interage/Autentica")
+    Call<Token> login(
+            @Body LoginDTO loginDTO
+    );
+
+    @POST("/api/Interage/Recupera")
+    Call<Void> recuperaSenha(
+            @Body EmailDTO emailDTO
     );
 }

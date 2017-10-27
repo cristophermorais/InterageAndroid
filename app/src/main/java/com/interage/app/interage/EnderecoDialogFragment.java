@@ -76,9 +76,8 @@ public class EnderecoDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    public int getNumero() {
-        String aux = ((EditText) view.findViewById(R.id.editTextNumero)).getText().toString();
-        return Integer.parseInt(aux);
+    public String getNumero() {
+        return ((EditText) view.findViewById(R.id.editTextNumero)).getText().toString();
     }
 
     public Endereco getEndereco() {

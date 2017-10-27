@@ -56,6 +56,7 @@ public class CepActivity extends AppCompatActivity implements EnderecoDialogFrag
         if (cep.length() < 9) {
             editTextCep.setError("CEP inválido");
         } else {
+            btCep.setEnabled(false);
             buscaEndereco(cep);
         }
 
@@ -72,22 +73,22 @@ public class CepActivity extends AppCompatActivity implements EnderecoDialogFrag
             public void onResponse(Call call, final Response response) throws IOException {
                 String json = response.body().string();
                 endereco = new Gson().fromJson(json, Endereco.class);
-                checkEndereco(endereco);
+
+                if (endereco.getCidade().equals("") || endereco.getUf().equals("") ||
+                        endereco.getBairro().equals("") || endereco.getEndereco().equals("")) {
+
+                    CepActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            editTextCep.setError("CEP inválido");
+                            btCep.setEnabled(true);
+                        }
+                    });
+                } else {
+                    showEnderecoDialog(endereco);
+                }
             }
         });
-    }
-
-    private void checkEndereco(Endereco endereco) {
-        if (endereco.getCidade().equals("") || endereco.getUf().equals("") || endereco.getBairro().equals("") || endereco.getEndereco().equals("")) {
-            CepActivity.this.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    editTextCep.setError("CEP inválido");
-                }
-            });
-        } else {
-            showEnderecoDialog(endereco);
-        }
     }
 
 
@@ -105,14 +106,22 @@ public class CepActivity extends AppCompatActivity implements EnderecoDialogFrag
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         // User touched the dialog's positive button
-        int numero = ((EnderecoDialogFragment) dialog).getNumero();
-        endereco.setNumero(numero);
-        startComplementoActivity();
+        String s_numero = ((EnderecoDialogFragment) dialog).getNumero();
+        int i_numero;
+        try {
+            i_numero = Integer.parseInt(s_numero);
+            endereco.setNumero(i_numero);
+            startComplementoActivity();
+        } catch (NumberFormatException exception) {
+            Toast.makeText(getApplicationContext(), "Informe o número", Toast.LENGTH_LONG).show();
+            btCep.setEnabled(true);
+        }
     }
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
         // User touched the dialog's negative button
+        btCep.setEnabled(true);
         Toast.makeText(getApplicationContext(), "Cancel!", Toast.LENGTH_LONG).show();
     }
 

@@ -1,32 +1,24 @@
 package com.interage.app.utils;
 
-import android.widget.EditText;
-
-
 public class Utils {
-    public static boolean validaEmail(EditText editTextEmail) {
-        String email = editTextEmail.getText().toString();
-
+    public static boolean validaEmail(String email) {
         if (email == null) {
             return false;
         } else {
             if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 return true;
             } else {
-                editTextEmail.setError("Email inválido");
                 return false;
             }
         }
     }
 
-    public static boolean validaSenha(EditText editTextSenha) {
-        String senha = editTextSenha.getText().toString();
+    //Retorna NULL se a senha for valida, ou uma mensagem de erro caso nao seja
+    public static String validaSenha(String senha) {
         if (senha.contains(" ")) {
-            editTextSenha.setError("A senha não deve conter espaços em branco");
-            return false;
+            return ("A senha não deve conter espaços em branco");
         } else if (senha.length() < 8) {
-            editTextSenha.setError("A senha é muito curta");
-            return false;
+            return ("A senha é muito curta");
         } else {
             boolean numero = false, minusculo = false, maiusculo = false;
 
@@ -41,36 +33,30 @@ public class Utils {
             }
 
             if (!numero || !minusculo || !maiusculo) {
-                editTextSenha.setError("A senha deve conter:\n\t-Numeros\n\t-Letras maiúsculas\n\t-Letras minúsculas");
-                return false;
+                return ("A senha deve conter:\n\t-Numeros\n\t-Letras maiúsculas\n\t-Letras minúsculas");
             } else {
-                return true;
+                return null;
             }
         }
     }
 
-    public static boolean validaNome(EditText editTextNome) {
-        String s_nome = editTextNome.getText().toString().trim();
-
+    //Retorna NULL se o nome for valido, ou uma mensagem de erro caso nao seja
+    public static String validaNome(String s_nome) {
         if (s_nome.isEmpty()) {
-            editTextNome.setError("Campo vazio");
-            return false;
+            return ("Campo vazio");
         } else if (!s_nome.contains(" ")) {
-            editTextNome.setError("Informe nome completo");
-            return false;
+            return ("Informe nome completo");
         } else if (s_nome.length() > 300) {
-            editTextNome.setError("Nome muito comprido");
-            return false;
+            return ("Nome muito comprido");
         } else {
-            return true;
+            return null;
         }
     }
 
-    public static boolean validaCPF(EditText editTextCPF) {
-        String cpf = MaskUtils.unmaskCPF(editTextCPF.getText().toString());
+    public static boolean validaCPF(String cpf) {
+        cpf = MaskUtils.unmaskCPF(cpf);
 
         if (cpf.length() < 11 || !Utils.isValidCPF(cpf)) {
-            editTextCPF.setError("CPF inválido");
             return false;
         } else {
             return true;
