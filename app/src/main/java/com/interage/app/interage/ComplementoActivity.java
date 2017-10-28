@@ -3,8 +3,11 @@ package com.interage.app.interage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -91,6 +94,10 @@ public class ComplementoActivity extends AppCompatActivity {
 
             }
         });
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void backToCep() {
@@ -98,5 +105,30 @@ public class ComplementoActivity extends AppCompatActivity {
         intent.putExtra("endereco", endereco);
         setResult(0, intent);
         super.finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        setResult(1, intent);
+        super.onBackPressed();
+    }
+
+    //Toolbar method
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    //Toolbar method
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }

@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,6 +51,9 @@ public class CepActivity extends AppCompatActivity implements EnderecoDialogFrag
         maskCEP = new MaskEditTextChangedListener("#####-###", editTextCep);
         editTextCep.addTextChangedListener(maskCEP);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void checkCep() {
@@ -59,7 +65,6 @@ public class CepActivity extends AppCompatActivity implements EnderecoDialogFrag
             btCep.setEnabled(false);
             buscaEndereco(cep);
         }
-
     }
 
     private void buscaEndereco(String cep) {
@@ -111,6 +116,7 @@ public class CepActivity extends AppCompatActivity implements EnderecoDialogFrag
         try {
             i_numero = Integer.parseInt(s_numero);
             endereco.setNumero(i_numero);
+            btCep.setEnabled(true);
             startComplementoActivity();
         } catch (NumberFormatException exception) {
             Toast.makeText(getApplicationContext(), "Informe o número", Toast.LENGTH_LONG).show();
@@ -128,16 +134,20 @@ public class CepActivity extends AppCompatActivity implements EnderecoDialogFrag
     public void startComplementoActivity() {
         Intent intent = new Intent(this, ComplementoActivity.class);
         intent.putExtra("endereco", endereco);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, 0);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        endereco = (Endereco) data.getSerializableExtra("endereco");
-        Intent intent = new Intent();
-        intent.putExtra("endereco", endereco);
-        setResult(0, intent);
-        super.finish();
+        if (resultCode == 0) {
+            endereco = (Endereco) data.getSerializableExtra("endereco");
+            Intent intent = new Intent();
+            intent.putExtra("endereco", endereco);
+            setResult(0, intent);
+            super.finish();
+        } else if (resultCode == 1) {
+
+        }
     }
 
     @Override
@@ -145,5 +155,23 @@ public class CepActivity extends AppCompatActivity implements EnderecoDialogFrag
         Intent intent = new Intent();
         setResult(1, intent);
         super.onBackPressed();
+    }
+
+    //Toolbar method
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    //Toolbar method
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }

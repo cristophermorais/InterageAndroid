@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.interage.app.interage.EscolherCadastroActivity">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="551dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,7 +29,8 @@
             android:id="@+id/textViewSelecionar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
             android:text="Como você vai interagir?"
             android:textAlignment="center"
             android:textSize="24sp"
@@ -36,9 +46,8 @@
                 android:id="@+id/cadastrar_usuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="25dp"
-                android:elevation="55dp"
-                app:cardCornerRadius="13dp">
+                android:layout_margin="20dp"
+                app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,9 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="25dp"
-                android:elevation="5dp"
-                app:cardCornerRadius="13dp">
+                android:layout_margin="20dp"
+                app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,4 +133,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

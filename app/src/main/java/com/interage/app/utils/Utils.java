@@ -1,5 +1,8 @@
 package com.interage.app.utils;
 
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
+
 public class Utils {
     public static boolean validaEmail(String email) {
         if (email == null) {
@@ -33,7 +36,7 @@ public class Utils {
             }
 
             if (!numero || !minusculo || !maiusculo) {
-                return ("A senha deve conter:\n\t-Numeros\n\t-Letras maiúsculas\n\t-Letras minúsculas");
+                return ("A senha deve conter pelo menos:\n\t1 número\n\t1 letra maiúscula\n\t1 letra minúscula");
             } else {
                 return null;
             }
@@ -47,7 +50,7 @@ public class Utils {
         } else if (!s_nome.contains(" ")) {
             return ("Informe nome completo");
         } else if (s_nome.length() > 300) {
-            return ("Nome muito comprido");
+            return ("Nome muito longo");
         } else {
             return null;
         }
@@ -132,4 +135,17 @@ public class Utils {
         return teste;
 
     }
+
+    public static void enableButton(Button button, AppCompatActivity activity) {
+        button.setEnabled(true);
+//        button.setTextColor(ContextCompat.getColor(activity.getApplicationContext(), R.color.textEnabledButton));
+//        button.setBackgroundColor(ContextCompat.getColor(activity.getApplicationContext(), R.color.backgroundEnabledButton));
+    }
+
+    public static void disableButton(Button button, AppCompatActivity activity) {
+        button.setEnabled(false);
+//        button.setTextColor(ContextCompat.getColor(activity.getApplicationContext(), R.color.textDisabledButton));
+//        button.setBackgroundColor(ContextCompat.getColor(activity.getApplicationContext(), R.color.backgroundDisabledButton));
+    }
+
 }

@@ -15,5 +15,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_endereco">EnderecoActivity</string>
     <string name="title_activity_teste">TesteActivity</string>
-
+    <item name="visible" type="id" />
+    <item name="masked" type="id" />
 </resources>

@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +29,6 @@ public class CadastrarActivity extends AppCompatActivity {
     private Endereco endereco = null;
 
     CardView cardViewEndereco;
-    TextView textViewTitulo;
     TextView textViewEnd;
     TextView textViewCompl;
     TextView textViewCidUf;
@@ -46,7 +48,6 @@ public class CadastrarActivity extends AppCompatActivity {
         int tipo = getIntent().getIntExtra("tipo", -1);
 
 
-        textViewTitulo = (TextView) findViewById(R.id.textViewTitulo);
         cardViewEndereco = (CardView) findViewById(R.id.card_view_endereco);
         btCadastrar = (Button) findViewById(R.id.buttonCadastrar);
         textViewEnd = (TextView) findViewById(R.id.textViewEnd);
@@ -67,9 +68,9 @@ public class CadastrarActivity extends AppCompatActivity {
 
 
         if (tipo == 1) {
-            textViewTitulo.setText("Cadastro de Usuário");
+            this.setTitle("Cadastro de Usuário");
         } else if (tipo == 2) {
-            textViewTitulo.setText("Cadastro de Promotor");
+            this.setTitle("Cadastro de Promotor");
         }
 
         btCadastrar.setOnClickListener(new View.OnClickListener() {
@@ -79,12 +80,20 @@ public class CadastrarActivity extends AppCompatActivity {
             }
         });
 
+
         cardViewEndereco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startCepActivity();
             }
         });
+
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Utils.enableButton(btCadastrar, this);
     }
 
     private void checkCadastro() {
@@ -117,7 +126,8 @@ public class CadastrarActivity extends AppCompatActivity {
     }
 
     private void sendCadastro() {
-        btCadastrar.setEnabled(false);
+        final AppCompatActivity activity = this;
+        Utils.disableButton(btCadastrar, this);
         Usuario usuarioPadrao = new Usuario();
         usuarioPadrao.setCPF(MaskUtils.unmaskCPF(cpf.getText().toString()));
         usuarioPadrao.setEmail(email.getText().toString().trim());
@@ -135,7 +145,7 @@ public class CadastrarActivity extends AppCompatActivity {
                 } else {
                     if (response.code() == 409) {
                         Toast.makeText(getApplicationContext(), "Já existe usuario cadastrado com o CPF/E-mail informado.", Toast.LENGTH_LONG).show();
-                        btCadastrar.setEnabled(true);
+                        Utils.enableButton(btCadastrar, activity);
                     }
                 }
             }
@@ -143,14 +153,14 @@ public class CadastrarActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Erro na conexão com o servidor.", Toast.LENGTH_LONG).show();
-                btCadastrar.setEnabled(true);
+                Utils.enableButton(btCadastrar, activity);
             }
         });
     }
 
     private void startCepActivity() {
         Intent intent = new Intent(this, CepActivity.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, 0);
     }
 
     @Override
@@ -174,5 +184,23 @@ public class CadastrarActivity extends AppCompatActivity {
             textViewCidUf.setText(endereco.getBairro() + ", " + endereco.getCidade() + " - " + endereco.getUf());
 
         }
+    }
+
+    //Toolbar method
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            finish();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    //Toolbar method
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }

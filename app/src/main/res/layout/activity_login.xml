@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     tools:context="com.interage.app.interage.LoginActivity">
 
     <LinearLayout
         android:layout_width="368dp"
         android:layout_height="551dp"
         android:orientation="vertical"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -33,30 +34,41 @@
             android:textSize="24sp"
             android:typeface="sans" />
 
-        <EditText
-            android:id="@+id/usuario"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:ems="10"
-            android:hint="E-mail"
-            android:inputType="textEmailAddress"
-            android:text="login@interage.com"
-            android:textAlignment="center" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/senha"
+            <EditText
+                android:id="@+id/usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:ems="10"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:text="login@interage.com"
+                android:textAlignment="center" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="Senha"
-            android:inputType="textPassword"
-            android:text="Teste123"
-            android:textAlignment="center" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Senha"
+                android:inputType="textPassword"
+                android:text="Teste123"
+                android:textAlignment="center" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:id="@+id/recuperarSenha"
@@ -66,9 +78,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="25dp"
             android:fontFamily="sans-serif"
-            android:text="Esqueceu a Senha?"
+            android:text="Esqueceu a senha?"
             android:textAlignment="textEnd"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorLink"
             android:textSize="14sp"
             android:typeface="sans" />
 
@@ -110,8 +122,8 @@
                 android:fontFamily="sans-serif"
                 android:text="Crie uma conta."
                 android:textAlignment="textStart"
+                android:textColor="@color/colorLink"
                 android:textSize="18sp"
-                android:textColor="@color/colorPrimary"
                 android:typeface="sans" />
         </RelativeLayout>
 

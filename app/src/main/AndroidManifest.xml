@@ -21,15 +21,21 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".RecuperarSenhaActivity" />
-        <activity android:name=".EscolherCadastroActivity" />
-        <activity android:name=".CadastrarActivity" />
-        <activity android:name=".CepActivity" />
         <activity
-            android:name="com.interage.app.TesteActivity"
-            android:label="@string/title_activity_teste"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".ComplementoActivity"></activity>
+            android:name=".RecuperarSenhaActivity"
+            android:label="Recuperar senha" />
+        <activity
+            android:name=".EscolherCadastroActivity"
+            android:label="Cadastro" />
+        <activity android:name=".CadastrarActivity" />
+        <activity
+            android:name=".CepActivity"
+            android:label="Cadastrar endereço" />
+
+        <activity
+            android:name=".ComplementoActivity"
+            android:label="Complemeto" />
+
     </application>
 
 </manifest>
